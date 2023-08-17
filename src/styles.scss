@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --redPrimary: #ff5733;
+  --redSecondary: #ff8c66;
+  --redAccent: #ffb699;
+  --greenPrimary: #4caf50;
+  --greenSeconday: #80e27e;
+  --greenAccent: #388e3c;
+  --bluePrimary: #03a9f4;
+  --blueSecondary: #67d5ff;
+  --blueAccent: #0288d1;
+  --yellowPrimary: #ffc107;
+  --yellowSecondary: #ffd54f;
+  --yellowAccent: #ffa000;
+  --grayPrimary: #b0bec5;
+  --graySecondary: #cfd8dc;
+  --grayAccent: #90a4ae;
+  --black:#313638;
+}
+*{
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+
+@font-face{
+  font-family: 'pokemon';
+  src: url('./fonts/gameboy/gameboy.ttf');
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  height: 1000px;
+  background: var(--redSecondary);
+  color: var(--black);
+  font-family: 'pokemon';
+}
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+a{
+  color: var(--blueAccent);
+  text-decoration: none;
+  cursor: pointer;
+  :hover{
+    color: var(--blueAccent);
+  }
+}

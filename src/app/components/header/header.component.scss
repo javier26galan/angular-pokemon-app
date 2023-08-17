@@ -1,0 +1,15 @@
+ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+li {
+  cursor: pointer !important;
+  :hover {
+    background-color: var(--yellowPrimary);
+    padding: 1em;
+  }
+}
+a {
+  color: var(--black);
+}

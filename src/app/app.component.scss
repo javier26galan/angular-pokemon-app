@@ -1,0 +1,35 @@
+.app-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--grayPrimary);
+  border: 1em solid var(--graySecondary);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+app-header {
+  background-color: var(--greenPrimary);
+}
+
+app-home {
+  background-color: thistle;
+}
+
+app-footer {
+  background-color: var(--greenPrimary);
+}
+
+@media (min-width: 900px) {
+  // media paraque a partir de los 900px de ancho el contenido este centrado
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .app-content {
+    width: 900px;
+  }
+}
