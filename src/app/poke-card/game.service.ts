@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { getRandomNumber } from '../utils/functions';
 import { PokeCard } from '../interfaces/pokeCard.interface';
+import { Item } from '../interfaces/item.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,7 @@ import { PokeCard } from '../interfaces/pokeCard.interface';
 export class GameService {
   pokeUrl = environment.pokeApi;
   itemUrl = environment.itemApi;
-  ids: number[] = [getRandomNumber(), getRandomNumber(), getRandomNumber()];
-  pokemonArr: PokeCard[] = [];
+  idsArr: number[] = [getRandomNumber(), getRandomNumber(), getRandomNumber()];
 
   constructor(private http: HttpClient) {}
 
@@ -22,28 +22,21 @@ export class GameService {
         return {
           name: response.name,
           imgUrl: response.sprites.default,
-        };
+          closed: true,
+        } as Item;
       })
     );
   }
 
-  getPokemons() {
-
-    this.ids.forEach((id) => {
-      this.http.get(`${this.pokeUrl}/${id}`).pipe(
-        map((response: any) => {
-          console.log("hola",response);
-          let pokemon = {
-            id: id,
-            name: response.species.name,
-            imgUrl: response.sprites.front_default,
-          };
-          this.pokemonArr.push(pokemon);
-        })
-      );
-    });
-    console.log(this.pokemonArr);
-
-    return this.pokemonArr;
+  getPokemon(id: number) {
+    return this.http.get(`${this.pokeUrl}/${id}`).pipe(
+      map((response: any) => {
+        return {
+          id: id,
+          name: response.species.name,
+          imgUrl: response.sprites.front_default,
+        } as PokeCard;
+      })
+    );
   }
 }

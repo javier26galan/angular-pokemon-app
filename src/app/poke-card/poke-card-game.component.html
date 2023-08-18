@@ -1,1 +1,26 @@
-<p>poke-card-game works!</p>
+<div class="container">
+  <div
+    class="card"
+    (click)="handleClick($event, i)"
+    *ngFor="let pokemon of pokemonArr; let i = index"
+  >
+    <div
+      *ngIf="pokeball"
+      class="pokeball"
+      [ngClass]="{
+        hidden: selectedCards.includes(i) || matchedPairs.includes(i)
+      }"
+    >
+      <img src="{{ pokeball.imgUrl }}" alt="{{ pokemon.name }}" id="{{ i }}" />
+    </div>
+    <div
+      *ngIf="pokemon"
+      class="pokemon"
+      [ngClass]="{
+        hidden: !selectedCards.includes(i) && !matchedPairs.includes(i)
+      }"
+    >
+      <img src="{{ pokemon.imgUrl }}" alt="{{ pokemon.name }}" id="{{ i }}" />
+    </div>
+  </div>
+</div>
