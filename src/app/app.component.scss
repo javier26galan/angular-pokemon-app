@@ -3,10 +3,12 @@
   flex-direction: column;
   justify-content: center;
   background-color: var(--grayPrimary);
-  border: 1em solid var(--graySecondary);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border: 5em solid var(--graySecondary);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background-color: #8ab5c0;
+  border: 2px solid #666;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 app-header {
@@ -21,7 +23,7 @@ app-footer {
   background-color: var(--greenPrimary);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   // media paraque a partir de los 900px de ancho el contenido este centrado
   .content {
     display: flex;
@@ -30,6 +32,6 @@ app-footer {
     height: 100vh;
   }
   .app-content {
-    width: 900px;
+    width: 1000px;
   }
 }

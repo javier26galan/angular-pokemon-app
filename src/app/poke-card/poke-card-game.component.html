@@ -24,3 +24,11 @@
     </div>
   </div>
 </div>
+
+<app-modal
+  [pokemon]="pokemonArr[0]"
+  [message]="winMessage"
+  [route]="routeGame"
+  (playAgainClicked)="onPlayAgainClicked($event)"
+  *ngIf="matchedPairs.length === pokemonArr.length"
+></app-modal>

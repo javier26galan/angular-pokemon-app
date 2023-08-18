@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PokeCardGameComponent } from './poke-card-game.component';
 import { PokeCardRoutingModule } from './poke-card-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
+import { ModalComponent } from '../shared/modal/modal.component';
 
 
 
@@ -13,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     PokeCardRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ]
 })
 export class PokeCardModule { }

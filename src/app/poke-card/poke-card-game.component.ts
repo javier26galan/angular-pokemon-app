@@ -12,14 +12,43 @@ import { getRandomNumber, shuffleArray } from '../utils/functions';
 })
 export class PokeCardGameComponent implements OnInit, OnDestroy {
   pokeball!: Item;
-  randomNumbers: number[] = [getRandomNumber(), getRandomNumber()];
+  randomNumbers: number[] = [];
   pokemonArr: PokeCard[] = [];
   pokeSubs: Subscription[] = [];
   selectedCards: number[] = [];
   matchedPairs: number[] = [];
   win: boolean = false;
+  winMessage: string = 'congrats you for the victory';
+  routeGame: string = 'card-game';
 
   constructor(public gameService: GameService) {}
+
+  setGame() {
+    //iniciador de el jeugo
+    this.randomNumbers = [getRandomNumber()];
+    this.randomNumbers.forEach((id, index, array) => {
+      const subscription = this.gameService
+        .getPokemon(id)
+        .subscribe((pokemon: PokeCard) => {
+          this.pokemonArr.push(pokemon);
+          this.pokemonArr.push(pokemon);
+          if (index === array.length - 1) {
+            this.pokemonArr = shuffleArray(this.pokemonArr);
+          }
+        });
+      this.pokeSubs.push(subscription);
+    });
+  }
+
+  onPlayAgainClicked(playAgain: boolean): void {
+    //para resetear el juego
+    if (playAgain) {
+      this.win = false;
+      this.pokemonArr = []
+      this.matchedPairs = []
+      this.setGame();
+    }
+  }
 
   handleClick(event: any, index: number) {
     if (!this.matchedPairs.includes(index) && this.selectedCards.length < 2) {
@@ -53,8 +82,7 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
   }
   showModal() {
     // hacemos aparecer el modal de todos encontrados
-    console.log('Mostrar modal');
-    this.win = true
+    this.win = true;
   }
 
   ngOnInit(): void {
@@ -62,18 +90,7 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
       this.pokeball = data;
     });
     this.pokeSubs.push(ballSubs);
-    this.randomNumbers.forEach((id, index, array) => {
-      const subscription = this.gameService
-        .getPokemon(id)
-        .subscribe((pokemon: PokeCard) => {
-          this.pokemonArr.push(pokemon);
-          this.pokemonArr.push(pokemon);
-          if (index === array.length - 1) {
-            this.pokemonArr = shuffleArray(this.pokemonArr);
-          }
-        });
-      this.pokeSubs.push(subscription);
-    });
+    this.setGame();
   }
 
   ngAfterViewInit(): void {}

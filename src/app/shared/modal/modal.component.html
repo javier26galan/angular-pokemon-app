@@ -1,0 +1,8 @@
+<div *ngIf="pokemon" class="container">
+  <img src="{{ pokemon.imgUrl }}" alt="{{ pokemon.name }}" />
+  <h2>{{ pokemon.name }} {{ message }}</h2>
+  <div class="navigation">
+    <button (click)="playAgain()">Play Again</button>
+    <button (click)="goHome()">Home</button>
+  </div>
+</div>
