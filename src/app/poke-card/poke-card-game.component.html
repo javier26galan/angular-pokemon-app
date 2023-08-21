@@ -1,21 +1,29 @@
-<div class="container">
+<div class="container" [@expand]="startGame ? 'open' : 'close'">
   <div
     class="card"
     (click)="handleClick($event, i)"
     *ngFor="let pokemon of pokemonArr; let i = index"
+    [@appear]="startGame ? 'appear' : 'hidden'"
   >
     <div
-      *ngIf="pokeball"
+      *ngIf="pokeballArr[i]"
       class="pokeball"
+      (click)="togglePokeball(pokeballArr[i])"
+      [@pokeball]="pokeballArr[i].state"
       [ngClass]="{
         hidden: selectedCards.includes(i) || matchedPairs.includes(i)
       }"
     >
-      <img src="{{ pokeball.imgUrl }}" alt="{{ pokemon.name }}" id="{{ i }}" />
+      <img
+        src="{{ pokeballArr[i].imgUrl }}"
+        alt="{{ pokemon.name }}"
+        id="{{ i }}"
+      />
     </div>
     <div
       *ngIf="pokemon"
       class="pokemon"
+      [@pokeball]="!pokeballArr[i].state"
       [ngClass]="{
         hidden: !selectedCards.includes(i) && !matchedPairs.includes(i)
       }"

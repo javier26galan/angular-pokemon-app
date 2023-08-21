@@ -11,13 +11,10 @@
   justify-content: center;
 }
 
-.pokeball img {
-  width: 5em;
+.pokemon img,.pokeball img{
+  width:7em;
   cursor: pointer;
-}
-.pokemon img{
-  width:5em;
-  cursor: pointer;
+  z-index: 1;
 }
 
 .hidden{

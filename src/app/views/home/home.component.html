@@ -1,4 +1,4 @@
-<div *ngIf="pokemon" class="container">
+<div *ngIf="pokemon" class="container" [@expand]="startComp ? 'open' : 'close'">
   <img src='{{pokemon.imgUrl}}' alt='{{pokemon.name}}'>
   <h2>{{pokemon.name}} welcomes you to Pokemon App</h2>
 </div>
