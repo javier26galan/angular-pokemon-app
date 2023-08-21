@@ -19,11 +19,6 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
   pokeballArr: Item[] = []; //
   randomNumbers: number[] = [
     getRandomNumber(),
-    getRandomNumber(),
-    getRandomNumber(),
-    getRandomNumber(),
-    getRandomNumber(),
-    getRandomNumber(),
   ];
   pokemonArr: PokeCard[] = []; //arr que contendrá los objetos pokemon
   pokeSubs: Subscription[] = []; //aquí guardo las subscriciones para luego dessubscribirme
@@ -67,7 +62,6 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
 
   togglePokeball(pokeball: Item): void {
     pokeball.state = pokeball.state === 'closed' ? 'open' : 'closed';
-    console.log(this.pokeballArr);
   }
 
   handleClick(event: any, index: number) {
@@ -104,6 +98,11 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
     if (this.matchedPairs.length === this.pokemonArr.length) {
       // Se han encontrado todos los pares de pokémons, mostrar el modal
       this.showModal();
+      console.log(this.selectedPokeballs);
+
+      this.selectedPokeballs.forEach((i)=>{
+        this.pokeballArr[i].state='closed'
+      })
     }
   }
   showModal() {
