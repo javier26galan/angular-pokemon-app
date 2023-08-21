@@ -19,6 +19,11 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
   pokeballArr: Item[] = []; //
   randomNumbers: number[] = [
     getRandomNumber(),
+    getRandomNumber(),
+    getRandomNumber(),
+    getRandomNumber(),
+    getRandomNumber(),
+    getRandomNumber(),
   ];
   pokemonArr: PokeCard[] = []; //arr que contendrá los objetos pokemon
   pokeSubs: Subscription[] = []; //aquí guardo las subscriciones para luego dessubscribirme
@@ -72,7 +77,6 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
         this.selectedPokeballs.push(index);
       }
 
-
       if (this.selectedCards.length === 2) {
         // Comparar los pokemons seleccionados
         const [index1, index2] = this.selectedCards;
@@ -86,9 +90,9 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
         } else {
           // No son el mismo pokemon, oculta las tarjetas después de un tiempo
           setTimeout(() => {
-            this.selectedPokeballs.forEach((id)=>{
+            this.selectedPokeballs.forEach((id) => {
               console.log(id);
-              this.pokeballArr[id].state = 'closed'
+              this.pokeballArr[id].state = 'closed';
             });
             this.selectedCards = [];
           }, 1000); //  espera 1 segundo (1000ms) antes de ocultar las tarjetas
@@ -100,9 +104,9 @@ export class PokeCardGameComponent implements OnInit, OnDestroy {
       this.showModal();
       console.log(this.selectedPokeballs);
 
-      this.selectedPokeballs.forEach((i)=>{
-        this.pokeballArr[i].state='closed'
-      })
+      this.selectedPokeballs.forEach((i) => {
+        this.pokeballArr[i].state = 'closed';
+      });
     }
   }
   showModal() {
